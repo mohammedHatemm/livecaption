@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: livecaption
+  datasource:
+    url: jdbc:postgresql://localhost:5432/livecaption
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+  jwt:
+  secret: ${JWT_SECRET:your-256-bit-secret-key-here-minimum-32-characters-long}
+  expiration: 604800000  # 7 days in milliseconds
+
+
+server:
+  port: 8080
