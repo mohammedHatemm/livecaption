@@ -33,10 +33,33 @@ build/
 .vscode/
 
 
-#### claude
+### Claude ###
 /claude
+
+### Maven Wrapper ###
 .mvn
-docker-compose.yml
 mvnw
 mvnw.cmd
-pom.xml
+
+### Security - NEVER COMMIT ###
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.crt
+secrets/
+!.env.example
+
+### Application Secrets ###
+application-local.yml
+application-secrets.yml
+*-secret.yml
+*-secrets.yml
+
+### Logs ###
+logs/
+*.log
+
+### Docker ###
+docker-compose.override.yml
