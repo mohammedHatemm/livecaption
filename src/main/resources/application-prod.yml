@@ -1,0 +1,63 @@
+# ===========================================
+# Production Profile Configuration
+# ===========================================
+# Security-hardened settings for production
+# Activate with: SPRING_PROFILES_ACTIVE=prod
+
+spring:
+  datasource:
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      idle-timeout: 300000
+      connection-timeout: 20000
+      max-lifetime: 1200000
+  jpa:
+    hibernate:
+      ddl-auto: validate  # Never auto-modify in production
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        generate_statistics: false
+
+# Swagger disabled in production
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
+
+# Logging - minimal in production
+logging:
+  level:
+    root: WARN
+    com.elsherif.livecaption: INFO
+    org.springframework.security: WARN
+    org.hibernate: WARN
+
+# Actuator - restricted in production
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: never
+    info:
+      enabled: true
+  info:
+    env:
+      enabled: false
+
+# Server hardening
+server:
+  error:
+    include-message: never
+    include-stacktrace: never
+    include-exception: false
+  tomcat:
+    accesslog:
+      enabled: true
+      pattern: "%h %l %u %t \"%r\" %s %b %D"
