@@ -11,10 +11,17 @@ spring:
       ddl-auto: update
     show-sql: true
     open-in-view: false
-  jwt:
-  secret: ${JWT_SECRET:your-256-bit-secret-key-here-minimum-32-characters-long}
-  expiration: 604800000  # 7 days in milliseconds
-
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 server:
   port: 8080
+
+jwt:
+  secret: ${JWT_SECRET:c2VjdXJlLWp3dC1zZWNyZXQta2V5LWZvci1saXZlY2FwdGlvbi1hcHBsaWNhdGlvbi0yNTYtYml0cw==}
+  expiration: 604800000
+
+tmdb:
+  api-key: ${TMDB_API_KEY:your-tmdb-api-key}
+  base-url: https://api.themoviedb.org/3
+  image-base-url: https://image.tmdb.org/t/p
+  timeout: 5000
