@@ -35,6 +35,15 @@ public class SecurityConfig {
             "/api/v1/movies/trending",
             "/api/v1/movies/{tmdbId}",
             "/api/v1/movies/genres",
+            "/api/v1/movies/discover",
+            // AI public endpoints
+            "/api/v1/ai/voice-search/**",
+            "/api/v1/ai/recommendations/similar/**",
+            "/api/v1/ai/sentiment/**",
+            "/api/v1/ai/translate/**",
+            // WebSocket
+            "/ws/**",
+            // Swagger
             "/swagger-ui/**",
             "/swagger-ui.html",
             "/v3/api-docs/**",

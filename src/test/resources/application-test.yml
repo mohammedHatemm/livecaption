@@ -19,3 +19,23 @@ tmdb:
   base-url: https://api.themoviedb.org/3
   image-base-url: https://image.tmdb.org/t/p
   timeout: 5000
+
+ai:
+  default-provider: openai
+  openai:
+    api-key: test-openai-key
+    base-url: https://api.openai.com/v1
+    embedding-model: text-embedding-3-small
+    chat-model: gpt-4o-mini
+    timeout: 30000
+  gemini:
+    api-key: test-gemini-key
+    base-url: https://generativelanguage.googleapis.com/v1beta
+    embedding-model: text-embedding-004
+    chat-model: gemini-1.5-flash
+    timeout: 30000
+  groq:
+    api-key: test-groq-key
+    base-url: https://api.groq.com/openai/v1
+    whisper-model: whisper-large-v3
+    timeout: 60000
