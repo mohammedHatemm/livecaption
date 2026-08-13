@@ -2,17 +2,19 @@ package com.elsherif.livecaption.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "watchlist", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"user_id", "movie_id"})
+    @UniqueConstraint(columnNames = {"user_id", "tmdb_id"})
 })
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Watchlist {
 
     @Id
@@ -23,10 +25,10 @@ public class Watchlist {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "movie_id", nullable = false)
-    private Movie movie;
+    @Column(name = "tmdb_id", nullable = false)
+    private Long tmdbId;
 
-    @Column(name = "added_at")
-    private LocalDateTime addedAt = LocalDateTime.now();
+    @CreationTimestamp
+    @Column(name = "added_at", updatable = false)
+    private LocalDateTime addedAt;
 }

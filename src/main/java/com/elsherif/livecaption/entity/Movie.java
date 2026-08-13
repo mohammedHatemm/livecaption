@@ -2,10 +2,15 @@ package com.elsherif.livecaption.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.type.SqlTypes;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "movies")
@@ -13,6 +18,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Movie {
 
     @Id
@@ -20,7 +26,7 @@ public class Movie {
     private Long id;
 
     @Column(name = "tmdb_id", nullable = false, unique = true)
-    private Integer tmdbId;
+    private Long tmdbId;
 
     @Column(nullable = false, length = 255)
     private String title;
@@ -37,8 +43,9 @@ public class Movie {
     @Column(name = "release_date")
     private LocalDate releaseDate;
 
+    @JdbcTypeCode(SqlTypes.JSON)
     @Column(columnDefinition = "jsonb")
-    private String genres;
+    private List<Genre> genres;
 
     @Column(name = "vote_average", precision = 3, scale = 1)
     private BigDecimal voteAverage;
@@ -49,9 +56,19 @@ public class Movie {
     @Column
     private Integer runtime;
 
+    @CreationTimestamp
     @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime createdAt;
 
+    @UpdateTimestamp
     @Column(name = "updated_at")
-    private LocalDateTime updatedAt = LocalDateTime.now();
+    private LocalDateTime updatedAt;
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Genre {
+        private Integer id;
+        private String name;
+    }
 }
