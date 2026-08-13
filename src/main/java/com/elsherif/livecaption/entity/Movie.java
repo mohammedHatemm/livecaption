@@ -44,7 +44,6 @@ public class Movie {
     private LocalDate releaseDate;
 
     @JdbcTypeCode(SqlTypes.JSON)
-    @Column(columnDefinition = "jsonb")
     private List<Genre> genres;
 
     @Column(name = "vote_average", precision = 3, scale = 1)
