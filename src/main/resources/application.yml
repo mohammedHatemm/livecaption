@@ -2,23 +2,23 @@ spring:
   application:
     name: livecaption
   datasource:
-    url: jdbc:postgresql://localhost:5432/livecaption
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:livecaption}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update
-    show-sql: true
+      ddl-auto: ${JPA_DDL_AUTO:validate}
+    show-sql: ${JPA_SHOW_SQL:false}
     open-in-view: false
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 server:
-  port: 8080
+  port: ${SERVER_PORT:8080}
 
 jwt:
-  secret: ${JWT_SECRET:c2VjdXJlLWp3dC1zZWNyZXQta2V5LWZvci1saXZlY2FwdGlvbi1hcHBsaWNhdGlvbi0yNTYtYml0cw==}
-  expiration: 604800000
+  secret: ${JWT_SECRET}
+  expiration: ${JWT_EXPIRATION:604800000}
 
 tmdb:
   api-key: ${TMDB_API_KEY:your-tmdb-api-key}
